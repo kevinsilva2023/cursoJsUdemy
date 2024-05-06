@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo</title>
+
+    <style>
+        * {
+            margin: 0;
+            font-size: 62,5%;
+        }
+        section {
+            height: 100vh;
+        }
+        .container{
+            background-color: darkcyan;
+            width: 100%;
+            height: 100%;
+
+            display: flex;        
+            justify-content: center;
+            align-items: center;
+        }
+        .bloco {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .blocoData {
+            color: black;
+            font-size: 2.6rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="bloco">
+                <h1 class="blocoData"></h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- jeito simples -->
+    <!-- <script>
+        const h1 = document.querySelector('.blocoData');
+        const data = new Date();
+        const options = {
+            dateStyle: 'full',
+        };
+
+        h1.innerHTML = data.toLocaleDateString('pt-BR', options) + " " + data.toLocaleTimeString('pt-BR')
+
+    </script> -->
+
+    <!--meu jeito -->
+    <script>
+        //buscando do html
+        const h1 = document.querySelector('.blocoData');
+
+        //colocando zero à esquerda 
+        function zeroAEsquerda(num) {
+            return num>= 10 ? num : `0${num}`;
+        }
+        
+        //craindo variaveis
+        const data = new Date();
+        const diaSemana = data.getDay(); //dia da semana;
+        const dia = data.getDate(); //dia do mês;
+        const month = data.getMonth() + 1; //mês;
+        const ano = data.getFullYear(); //ano
+        const hora = zeroAEsquerda(data.getHours()); //hora;
+        const min = zeroAEsquerda(data.getMinutes()); // minuto;
+
+        //formatando data
+        function diaSemanaTexto() {
+            let diaSemanaTexto = diaSemana
+            switch(diaSemanaTexto) {
+                case 0:
+                    diaSemanaTexto = 'Domingo';
+                    return diaSemanaTexto;
+                case 1:
+                    diaSemanaTexto = 'Segunda-Feira';
+                    return diaSemanaTexto;
+                case 2:
+                    diaSemanaTexto = 'Terça-Feira';
+                    return diaSemanaTexto;
+                case 3:
+                    diaSemanaTexto = 'Quarta-Feira';
+                    return diaSemanaTexto;
+                case 4:
+                    diaSemanaTexto = 'Quinta-Feira';
+                    return diaSemanaTexto;
+                case 5:
+                    diaSemanaTexto = 'Sexta-Feira';
+                    return diaSemanaTexto;
+                case 6:
+                    diaSemanaTexto = 'Sábado';
+                    return diaSemanaTexto;
+            }
+
+        }
+
+        //formatando mes
+        function mesEmTexto() {
+            let mesEmTexto = month;
+
+            switch(mesEmTexto) {
+                case 1:
+                    mesEmTexto = 'Janeiro';
+                    return mesEmTexto;
+                case 2:
+                    mesEmTexto = 'Fevereiro';
+                    return mesEmTexto;
+                case 3:
+                    mesEmTexto = 'Março';
+                    return mesEmTexto;
+                case 4:
+                    mesEmTexto = 'Abril';
+                    return mesEmTexto;
+                case 5:
+                    mesEmTexto = 'Maio';
+                    return mesEmTexto;
+                case 6:
+                    mesEmTexto = 'Junho';
+                    return mesEmTexto;
+                case 7:
+                    mesEmTexto = 'Julho';
+                    return mesEmTexto;
+                case 8:
+                    mesEmTexto = 'Agosto';
+                    return mesEmTexto;
+                case 9:
+                    mesEmTexto = 'Setembro';
+                    return mesEmTexto;
+                case 10:
+                    mesEmTexto = 'Outubro';
+                    return mesEmTexto;
+                case 11:
+                    mesEmTexto = 'Novembro';
+                    return mesEmTexto;
+                case 12:
+                    mesEmTexto = 'Dezembro';
+                    return mesEmTexto;
+                
+            }
+        }
+
+        //retornando dados das functions
+        const sem = diaSemanaTexto();
+        const mes = mesEmTexto();
+
+        //concatenando os resultado
+        const mostrarData = `${sem}, ${dia} de ${mes} de ${ano} ${hora}:${min}`;
+
+        //mostrando pro html
+        h1.innerHTML = mostrarData;
+    </script>
+</body>
+
+</html>
